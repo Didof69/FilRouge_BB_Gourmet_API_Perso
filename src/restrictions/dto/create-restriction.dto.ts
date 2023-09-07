@@ -1,1 +1,3 @@
-export class CreateRestrictionDto {}
+export class CreateRestrictionDto {
+  libelle: string;
+}

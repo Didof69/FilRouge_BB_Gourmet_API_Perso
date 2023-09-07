@@ -1,1 +1,3 @@
-export class CreateSaisonDto {}
+export class CreateSaisonDto {
+  libelle: string;
+}
