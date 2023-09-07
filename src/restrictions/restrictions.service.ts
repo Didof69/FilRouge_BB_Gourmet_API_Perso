@@ -17,7 +17,7 @@ export class RestrictionsService {
   }
 
   findAll() {
-    return `This action returns all restrictions`;
+    return this.restrictionsRepository.find();
   }
 
   findOne(id: number) {

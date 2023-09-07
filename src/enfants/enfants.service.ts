@@ -17,7 +17,7 @@ export class EnfantsService {
   }
 
   findAll() {
-    return `This action returns all enfants`;
+    return this.enfantsRepository.find();
   }
 
   findOne(id: number) {

@@ -21,6 +21,6 @@ export class Utilisateur {
   @Column({ nullable: false })
   admin: boolean;
 
-  @OneToMany(() => Enfant, (enfant) => enfant.utilisateur)
+  @OneToMany(() => Enfant, (enfant) => enfant.utilisateur, {eager:true})
   enfants: Enfant[];
 }
