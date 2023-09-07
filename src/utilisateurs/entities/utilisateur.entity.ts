@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Enfant } from "src/enfants/entities/enfant.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Utilisateur {
@@ -19,4 +20,7 @@ export class Utilisateur {
 
   @Column({ nullable: false })
   admin: boolean;
+
+  @OneToMany(() => Enfant, (enfant) => enfant.utilisateur)
+  enfants: Enfant[];
 }

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Aliment } from "src/aliments/entities/aliment.entity";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Saison {
@@ -7,4 +8,7 @@ export class Saison {
 
   @Column({ nullable: false })
   libelle: string;
+
+  @ManyToMany(() => Aliment, (aliment) => aliment.saisons,{eager:true})
+  aliments: Aliment[];
 }

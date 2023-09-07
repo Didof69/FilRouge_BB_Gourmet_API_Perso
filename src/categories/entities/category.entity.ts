@@ -9,6 +9,6 @@ export class Category {
   @Column({ nullable: false })
   libelle: string;
     
-    // @OneToMany(() => Aliment, (aliment) => aliment.category)
-    // aliments: Aliment[];
+  @OneToMany(() => Aliment, (aliment) => aliment.category)
+  aliments: Aliment[];
 }

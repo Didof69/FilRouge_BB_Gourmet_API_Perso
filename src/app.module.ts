@@ -9,6 +9,12 @@ import { CategoriesModule } from './categories/categories.module';
 import { SaisonsModule } from './saisons/saisons.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Aliment } from './aliments/entities/aliment.entity';
+import { Saison } from './saisons/entities/saison.entity';
+import { Category } from './categories/entities/category.entity';
+import { Enfant } from './enfants/entities/enfant.entity';
+import { Restriction } from './restrictions/entities/restriction.entity';
+import { Utilisateur } from './utilisateurs/entities/utilisateur.entity';
 
 @Module({
   imports: [
@@ -26,7 +32,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
-      entities: [],
+      entities: [Aliment, Saison, Category, Enfant,Restriction,Utilisateur],
       synchronize: false,
     }),
   ],

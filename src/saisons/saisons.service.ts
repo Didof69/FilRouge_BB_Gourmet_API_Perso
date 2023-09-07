@@ -17,7 +17,7 @@ export class SaisonsService {
   }
 
   findAll() {
-    return `This action returns all saisons`;
+    return this.saisonsRepository.find();
   }
 
   findOne(id: number) {

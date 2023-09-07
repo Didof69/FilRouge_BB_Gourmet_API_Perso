@@ -16,7 +16,7 @@ export class AlimentsService {
   }
 
   findAll() {
-    return `This action returns all aliments`;
+    return this.alimentsRepository.find();
   }
 
   findOne(id: number) {
