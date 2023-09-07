@@ -11,7 +11,7 @@ export class Utilisateur {
   @Column({ nullable: false })
   prenom: string;
 
-  @Column({ nullable: false })
+  @Column({ nullable: false, unique: true }) // Utilisation de l'option unique
   email: string;
 
   @Column({ nullable: false })
