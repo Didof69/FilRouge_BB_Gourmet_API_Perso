@@ -1,5 +1,5 @@
 export class CreateEnfantDto {
     prenom: string;
-    date_de_naissance: Date;
+    date_naissance: Date;
     id_utilisateur: number;
 }
