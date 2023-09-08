@@ -14,9 +14,7 @@ export class CreateUtilisateurDto {
   email: string;
 
   @IsNotEmpty()
-  @IsString()
-  @Length(8, 16)
-    // @Matches('/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$/')
+  @Matches(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$/)
   mot_de_passe: string;
 
   @IsNotEmpty()
