@@ -213,7 +213,10 @@ export class CreatePlantDto {
 }
 ```
 
-
+_nb: si pas d'import automatique des décorateurs:_
+```
+import { IsNotEmpty } from "class-validator";
+```
 # Swagger
 
 ## Etape 1 : installer les modules

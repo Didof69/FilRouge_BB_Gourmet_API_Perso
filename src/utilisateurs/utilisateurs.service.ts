@@ -18,9 +18,9 @@ export class UtilisateursService {
     return result;
   }
 
-  findAll() {
-    return this.utilisateursRepository.find();
-  }
+  // findAll() {
+  //   return this.utilisateursRepository.find();
+  // }
 
   async findOne(id: number) {
     const found = await this.utilisateursRepository.findOneBy({ id });
@@ -37,7 +37,7 @@ export class UtilisateursService {
     return result;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} utilisateur`;
-  }
+  // remove(id: number) {
+  //   return `This action removes a #${id} utilisateur`;
+  // }
 }
