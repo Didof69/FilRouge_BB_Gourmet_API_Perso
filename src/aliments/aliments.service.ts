@@ -31,8 +31,19 @@ export class AlimentsService {
 
   async update(id: number, updateAlimentDto: UpdateAlimentDto) {
     const aliment = await this.findOne(id);
-    const newAliment = this.alimentsRepository.merge(aliment, updateAlimentDto);
+    console.log(aliment);
+    
+    const newAliment = {
+      id: id,
+      libelle: updateAlimentDto.libelle,
+      age_introduction: updateAlimentDto.age_introduction,
+      id_categorie: updateAlimentDto.id_categorie,
+      saisons: updateAlimentDto.saisons,
+      restrictions: updateAlimentDto.restrictions
+    }
     const result = await this.alimentsRepository.save(newAliment);
+    console.log(result);
+    
     return result;
   }
 

@@ -9,6 +9,8 @@ import {
   Min,
   ValidateNested,
 } from 'class-validator';
+import { RestrictionDto } from 'src/restrictions/dto/restriction.dto';
+import { Restriction } from 'src/restrictions/entities/restriction.entity';
 import { SaisonDto } from 'src/saisons/dto/saison.dto';
 import { Saison } from 'src/saisons/entities/saison.entity';
 
@@ -34,4 +36,9 @@ export class CreateAlimentDto {
   @ValidateNested({ each: true }) // Valide chaque élément du tableau
   @Type(() => SaisonDto) // Utilisez le DTO de validation des Saison
   saisons: Saison[];
+
+  @IsArray()
+  @ValidateNested({ each: true }) // Valide chaque élément du tableau
+  @Type(() => RestrictionDto) // Utilisez le DTO de validation des Saison
+  restrictions: Restriction[];
 }

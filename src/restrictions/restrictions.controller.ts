@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { RestrictionsService } from './restrictions.service';
 import { CreateRestrictionDto } from './dto/create-restriction.dto';
 import { UpdateRestrictionDto } from './dto/update-restriction.dto';
