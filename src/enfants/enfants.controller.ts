@@ -21,7 +21,8 @@ export class EnfantsController {
   }
 
   @Get()
-  findAll( @GetUser() utilisateur: Utilisateur): Promise<Enfant[]> {
+  findAll(@GetUser() utilisateur: Utilisateur): Promise<Enfant[]> {
+    console.log('find enfant', utilisateur);
     return this.enfantsService.findEnfantByIdUtilisateur(utilisateur.id);
   }
 
