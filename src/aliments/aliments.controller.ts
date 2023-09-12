@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  NotFoundException,
 } from '@nestjs/common';
 import { AlimentsService } from './aliments.service';
 import { CreateAlimentDto } from './dto/create-aliment.dto';
@@ -27,7 +28,7 @@ export class AlimentsController {
   ) {
     if (!utilisateur.admin) {
       console.log('create aliment', utilisateur);
-      return console.log('Droits admin nécéssaires');
+      throw new NotFoundException('Droits admin nécéssaires');
     }
     console.log('create aliment', utilisateur);
     return this.alimentsService.create(createAlimentDto);
@@ -52,7 +53,7 @@ export class AlimentsController {
   ) {
     if (!utilisateur.admin) {
       console.log('create aliment', utilisateur);
-      return console.log('Droits admin nécéssaires');
+      throw new NotFoundException('Droits admin nécéssaires');
     }
     console.log('create aliment', utilisateur);
     return this.alimentsService.update(+id, updateAlimentDto);
@@ -63,7 +64,7 @@ export class AlimentsController {
   remove(@Param('id') id: string, @GetUser() utilisateur: Utilisateur) {
     if (!utilisateur.admin) {
       console.log('create aliment', utilisateur);
-      return console.log('Droits admin nécéssaires');
+      throw new NotFoundException('Droits admin nécéssaires');
     }
     console.log('create aliment', utilisateur);
     return this.alimentsService.remove(+id);
