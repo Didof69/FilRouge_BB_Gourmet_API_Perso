@@ -10,22 +10,28 @@ export class EnfantsService {
   constructor(
     @InjectRepository(Enfant)
     private enfantsRepository: Repository<Enfant>,
-  ) { }
-  
-  async create(createEnfantDto: CreateEnfantDto) {
-    const aliment = this.enfantsRepository.create(createEnfantDto);
-    const result = await this.enfantsRepository.save(aliment);
+  ) {}
+
+  async create(createEnfantDto: CreateEnfantDto, id_utilisateur: number) {
+    const enfant = this.enfantsRepository.create(createEnfantDto);
+    enfant.id_utilisateur = id_utilisateur;
+    console.log('infos enfant sauvegardées :', enfant);
+    const result = await this.enfantsRepository.save(enfant);
     return result;
   }
 
-  findAll() {
-    return this.enfantsRepository.find();
+  async findEnfantByIdUtilisateur(id_utilisateur: number): Promise<Enfant[]> {
+    const found = await this.enfantsRepository.find({
+      where: { id_utilisateur },
+    });
+
+    return found;
   }
 
   async findOne(id: number) {
     const found = await this.enfantsRepository.findOneBy({ id });
     if (!found) {
-      throw new NotFoundException(`Enfant with the id ${id} not found`)
+      throw new NotFoundException(`Enfant with the id ${id} not found`);
     }
     return found;
   }
@@ -33,7 +39,7 @@ export class EnfantsService {
   async update(id: number, updateEnfantDto: UpdateEnfantDto) {
     const enfant = await this.findOne(id);
     const newEnfant = this.enfantsRepository.merge(enfant, updateEnfantDto);
-    const result = await this.enfantsRepository.save(newEnfant)
+    const result = await this.enfantsRepository.save(newEnfant);
     return result;
   }
 
