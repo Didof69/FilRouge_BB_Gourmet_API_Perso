@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import {
   ArrayNotEmpty,
@@ -15,28 +16,33 @@ import { SaisonDto } from 'src/saisons/dto/saison.dto';
 import { Saison } from 'src/saisons/entities/saison.entity';
 
 export class CreateAlimentDto {
+  @ApiProperty()
   @IsNotEmpty()
   @IsString()
   libelle: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsInt()
   @Min(0)
   @Max(36)
   age_introduction: number;
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsInt()
   @Min(1)
   @Max(8)
   id_categorie: number;
 
+  @ApiProperty()
   @ArrayNotEmpty()
   @IsArray()
   @ValidateNested({ each: true }) // Valide chaque élément du tableau
   @Type(() => SaisonDto) // Utilisez le DTO de validation des Saison
   saisons: Saison[];
 
+  @ApiProperty()
   @IsArray()
   @ValidateNested({ each: true }) // Valide chaque élément du tableau
   @Type(() => RestrictionDto) // Utilisez le DTO de validation des Saison

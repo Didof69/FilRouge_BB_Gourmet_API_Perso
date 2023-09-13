@@ -3,10 +3,12 @@ import { UtilisateursService } from './utilisateurs.service';
 import { AuthGuard } from '@nestjs/passport';
 import { GetUser } from 'src/auth/get-user.decorator';
 import { Utilisateur } from './entities/utilisateur.entity';
+import { ApiTags } from '@nestjs/swagger';
 
 
 @Controller('utilisateurs')
-  @UseGuards(AuthGuard())
+@UseGuards(AuthGuard())
+@ApiTags('Utilisateurs Controller')
 export class UtilisateursController {
   constructor(private readonly utilisateursService: UtilisateursService) {}
 
@@ -21,7 +23,7 @@ export class UtilisateursController {
   // }
 
   @Get()
-  findOne(@GetUser() utilisateur :Utilisateur) {
+  findOne(@GetUser() utilisateur: Utilisateur) {
     return this.utilisateursService.findOne(utilisateur.id);
   }
 

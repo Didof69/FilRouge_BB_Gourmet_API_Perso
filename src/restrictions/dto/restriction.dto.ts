@@ -1,7 +1,9 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsInt, Min, Max } from 'class-validator';
 
 export class RestrictionDto {
-@IsNotEmpty()
+  @ApiProperty()
+  @IsNotEmpty()
   @IsInt()
   @Min(1)
   @Max(15)

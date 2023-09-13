@@ -36,16 +36,30 @@ export class EnfantsService {
     return found;
   }
 
-  async update(id: number, updateEnfantDto: UpdateEnfantDto) {
-    const enfant = await this.findOne(id);
-    const newEnfant = this.enfantsRepository.merge(enfant, updateEnfantDto);
-    const result = await this.enfantsRepository.save(newEnfant);
+  async update(
+    idEnfant: number,
+    updateEnfantDto: UpdateEnfantDto,
+    idUtilisateur: number,
+  ) {
+    let enfant = await this.findOne(idEnfant);
+    enfant.prenom = updateEnfantDto.prenom;
+    enfant.date_naissance = updateEnfantDto.date_naissance;
+    enfant.id_utilisateur = idUtilisateur;
+    enfant.restrictions = updateEnfantDto.restrictions;
+
+    const result = await this.enfantsRepository.save(enfant);
     return result;
   }
 
-  async remove(id: number) {
-    const enfant = await this.findOne(id);
-    await this.enfantsRepository.remove(enfant);
-    return `Enfant with id : ${id} has been deleted`;
+  async remove(idEnfant: number, idUtilisateur: number) {
+    const enfant = await this.findOne(idEnfant);
+    if (enfant.id_utilisateur === idUtilisateur) {
+      await this.enfantsRepository.remove(enfant);
+      return `Enfant with id : ${idEnfant} has been deleted`;
+    }
+
+    throw new NotFoundException(
+      `Vous ne detenez pas les droit pour supprimer cet enfant.`,
+    );
   }
 }

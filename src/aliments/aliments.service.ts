@@ -30,18 +30,16 @@ export class AlimentsService {
   }
 
   async update(id: number, updateAlimentDto: UpdateAlimentDto) {
-    const aliment = await this.findOne(id);
+    let aliment = await this.findOne(id);
     console.log(aliment);
     
-    const newAliment = {
-      id: id,
-      libelle: updateAlimentDto.libelle,
-      age_introduction: updateAlimentDto.age_introduction,
-      id_categorie: updateAlimentDto.id_categorie,
-      saisons: updateAlimentDto.saisons,
-      restrictions: updateAlimentDto.restrictions
-    }
-    const result = await this.alimentsRepository.save(newAliment);
+    aliment.libelle= updateAlimentDto.libelle;
+    aliment.age_introduction= updateAlimentDto.age_introduction;
+    aliment.id_categorie= updateAlimentDto.id_categorie;
+    aliment.saisons= updateAlimentDto.saisons;
+    aliment.restrictions= updateAlimentDto.restrictions;
+    
+    const result = await this.alimentsRepository.save(aliment);
     console.log(result);
     
     return result;

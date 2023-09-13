@@ -15,8 +15,10 @@ import { UpdateAlimentDto } from './dto/update-aliment.dto';
 import { GetUser } from 'src/auth/get-user.decorator';
 import { AuthGuard } from '@nestjs/passport';
 import { Utilisateur } from 'src/utilisateurs/entities/utilisateur.entity';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('aliments')
+@ApiTags('Aliments Controller')
 export class AlimentsController {
   constructor(private readonly alimentsService: AlimentsService) {}
 
